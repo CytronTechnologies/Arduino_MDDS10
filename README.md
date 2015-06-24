@@ -1,2 +1,12 @@
 # Arduino_MDDS10
-Check in for Tutorial to show interface and sample program of Arduino + PS2 shield + MDDS10 for mobile robot control. Full tutorial at http://tutorial.cytron.com.my/2015/06/24/tutorial-to-show-interface-and-sample-program-of-arduino-ps2-shield-mdds10-for-mobile-robot-control/
+Arduino sketch for Tutorial to show interface and sample program of Arduino + PS2 shield + MDDS10 for mobile robot control. 
+Full tutorial at http://tutorial.cytron.com.my/2015/06/24/tutorial-to-show-interface-and-sample-program-of-arduino-ps2-shield-mdds10-for-mobile-robot-control/
+
+Microcontroller: CT-UNO
+
+IDE: Arduino IDE v1.6.4
+
+Compiler: Arduino IDE v1.6.4
+
+Please check full toturial for connection and explanation. 
+Welcome to our technical to discuss if you have any inquiry. http://forum.cytron.com.my/
