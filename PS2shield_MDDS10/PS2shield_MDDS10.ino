@@ -3,9 +3,9 @@ PWM input mode with microcontroller (Independent Both), DIP switch 1 0 1 1 0 1 0
 This code is using PS2 shield library and math library.
 This code is tested with CT-Uno,Smart Drive Duo 10(MDDS10),PS2 shield and PS2 wireless. 
 */
-#include <Shield_PS2.h>
-PS2 ps2=PS2();
-
+#include <SoftwareSerial.h>
+#include <Cytron_PS2Shield.h> //PS2 shield library
+Cytron_PS2Shield ps2(2, 3); // SoftwareSerial: Rx and Tx pin
 #include<math.h>
 
 int dig1=7;  //pin signal for motor left
@@ -23,14 +23,15 @@ int acc=0;
 
 void setup()
 {
+  ps2.begin(9600); // This baudrate must same with the jumper setting at PS2 shield
+  ps2.reset(1);             //call to reset Shield-PS2
+  delay(100);
+  ps2.reset(0);
   pinMode(dig1,OUTPUT);      //initialize for all the input and output
   pinMode(dig2,OUTPUT);
   pinMode(an1,INPUT);
   pinMode(an2,INPUT);
   Serial.begin(9600);
-  ps2.init(9600, 2, 3);//initialize the main board to use desired (baudrate, rx, tx)
-                       //for Arduino Mega use RX:10, TX: 11 for software serial
-                       //for Arduino Leonardo use pin 8, 9, 10, 11 as RX and TX for software serial
   analogWrite(an1,0);  //Based on the datasheet, the MDDS10 analog pin should get 0 input upon start 
   analogWrite(an2,0);  //thus we need to send 0 value at the beginning
   delay(1000);                        
@@ -40,9 +41,9 @@ void setup()
 void loop()
 {
     //joystick value
-    ly=ps2.getval(p_joy_ly);
-    lx=ps2.getval(p_joy_lx);
-    acc=ps2.getval(p_l2);
+    ly=ps2.readButton(PS2_JOYSTICK_LEFT_Y_AXIS);
+    lx=ps2.readButton(PS2_JOYSTICK_LEFT_X_AXIS);
+    acc=(ps2.readButton(PS2_LEFT_2) == 0);
    
      
      if(acc==HIGH)
